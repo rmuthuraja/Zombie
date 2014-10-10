@@ -13,8 +13,8 @@ public class BackgroundScroller : MonoBehaviour {
 		GameObject bg1 = backgroundsArray [0];
 		GameObject bg2 = backgroundsArray [1];
 
-		bg1.transform.position = new Vector3 (0, 0, 0);
-		bg2.transform.position = new Vector3 (0, -10.24f, 0);
+		//bg1.transform.position = new Vector3 (0, 0, 0);
+		//bg2.transform.position = new Vector3 (0, -10.24f, 0);
 
 	}
 	
