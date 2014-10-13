@@ -4,18 +4,22 @@ using System.Collections;
 public class BackgroundScroller : MonoBehaviour {
 
 	public GameObject[] backgroundsArray;
+	public GameObject[] foregroundsArray;
 
-	public float scrollSpeed = 0.0f;
-
+	public float bgScrollSpeed = 0.0f;
+	public float foregroundSpeed = 0.0f;
 	// Use this for initialization
 	void Start () {
 
-		GameObject bg1 = backgroundsArray [0];
-		GameObject bg2 = backgroundsArray [1];
+		Transform bg2 = backgroundsArray [1].transform;
+		bg2.position = new Vector3 (bg2.position.x,
+		                                     bg2.position.y - bgScrollSpeed,
+		                                     bg2.position.z);
 
-		//bg1.transform.position = new Vector3 (0, 0, 0);
-		//bg2.transform.position = new Vector3 (0, -10.24f, 0);
-
+		Transform fgBg2 = foregroundsArray [1].transform;
+		fgBg2.position = new Vector3 (fgBg2.position.x,
+		                             fgBg2.position.y - foregroundSpeed,
+		                             fgBg2.position.z);
 	}
 	
 	// Update is called once per frame
@@ -24,13 +28,28 @@ public class BackgroundScroller : MonoBehaviour {
 		foreach (GameObject obj in backgroundsArray) {
 				
 			obj.transform.position = new Vector3(obj.transform.position.x,
-			                                     obj.transform.position.y + scrollSpeed,
+			                                     obj.transform.position.y + bgScrollSpeed,
 			                                     obj.transform.position.z);
 
-			if(obj.transform.position.y > 10.24) {
+			if(obj.transform.position.y > 10) {
 
 				obj.transform.position = new Vector3(obj.transform.position.x,
-				                                     -10.24f + scrollSpeed,
+				                                     -10f + bgScrollSpeed,
+				                                     obj.transform.position.z);
+			}
+		}
+
+
+		foreach (GameObject obj in foregroundsArray) {
+			
+			obj.transform.position = new Vector3(obj.transform.position.x,
+			                                     obj.transform.position.y + foregroundSpeed,
+			                                     obj.transform.position.z);
+			
+			if(obj.transform.position.y > 10) {
+				
+				obj.transform.position = new Vector3(obj.transform.position.x,
+				                                     -10f + foregroundSpeed,
 				                                     obj.transform.position.z);
 			}
 		}
